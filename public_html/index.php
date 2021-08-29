@@ -6,6 +6,7 @@
 <?php
 $var='dfsdf';
 $var2="5555";
+$var34=9;
 echo($var);
 echo($var2);
 ?>
