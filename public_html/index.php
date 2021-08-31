@@ -4,8 +4,8 @@
 </head>
 <body>
 <?php
-$var='my second branches';
-$var2="5secon!";
+$var='my third branches';
+$var2="third!";
 $var34=9;
 echo($var);
 echo($var2);
