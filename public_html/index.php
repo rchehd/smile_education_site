@@ -4,8 +4,8 @@
 </head>
 <body>
 <?php
-$var='dfsdf';
-$var2="5555";
+$var='my second branches';
+$var2="5secon!";
 $var34=9;
 echo($var);
 echo($var2);
