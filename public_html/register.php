@@ -6,7 +6,6 @@ $password = "1235812358";
 $dbname="my_host1";
 
 
-
 $errors = array();
 
 // Create connection
@@ -27,13 +26,14 @@ if (!$conn) {
     if(mysqli_num_rows($sql1)>0)
     {
         echo "Email Id Already Exists";
-        header("Location:http://my_host1.com/registration.php?txt=Email is already Exists! Please try another&col=red",);
+        header("Location:http://my_host1.com/registration.php?txt=Email is already Exists! Please try another&col=red&dFname=$firstname&dLname=$lastname",);
+
         exit;
     }
     $sql = "INSERT INTO users (FirstName, LastName, Email, password,DateOfReg) 
             "."VALUES ('$firstname','$lastname','$email','$password',NOW())";
 if ($conn->query($sql) === TRUE) {
-    header("Location:http://my_host1.com/registration.php?txt=You are successfully registered!&col=green",);
+    header("Location:http://my_host1.com/index.php?txt=You are successfully registered!&col=green&log=$email",);
     die();
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
