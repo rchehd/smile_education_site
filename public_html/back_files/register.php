@@ -1,17 +1,6 @@
 <?php
-session_start();
-$servername = "localhost";
-$username = "myuser";
-$password = "1235812358";
-$dbname="my_host1";
-
-// Create connection
-$conn = mysqli_connect($servername, $username, $password,$dbname);
-
-// Check connection
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-};
+include '../db/database_info.php';
+include '../db/lib.php';
 //read global array '$_POST'
 function GetDataUser($key){
     $arr=[
@@ -28,25 +17,17 @@ $lastname = GetDataUser(lastname);
 $email = GetDataUser(email);
 $password =GetDataUser(hash);
 
-
-//validation for emails
-$sql1=mysqli_query($conn,"SELECT * FROM users where Email='$email'");
-if(mysqli_num_rows($sql1)>0) {
+if(isUser($email)>0) {
         header("Location:http://my_host1.com/registration.php?txt=Email is already Exists! Please try another&col=red&dFname=$firstname&dLname=$lastname",);
         exit;
     }
-//registration user
-$sql = "INSERT INTO users (FirstName, LastName, Email, password,DateOfReg) 
-        "."VALUES ('$firstname','$lastname','$email','$password',NOW())";
 
-if ($conn->query($sql) === TRUE) {
+if (registerUser($firstname,$lastname,$email,$password)) {
     header("Location:http://my_host1.com/index.php?txt=You are successfully registered!&col=green&log=$email");
     die();
-} else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
 }
 
-$conn->close();
+
 ?>
 
 
