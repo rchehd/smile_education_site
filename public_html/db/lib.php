@@ -76,4 +76,13 @@ function getUserHashId($id){
     }
     $conn->close();
 }
+function getDateUser($email){
+    global $conn;
+    $sql_info = mysqli_query($conn, "SELECT DateOfReg FROM users WHERE Email='$email'");
+    $data = $sql_info->fetch_all(MYSQLI_ASSOC);
+    $row=$data[0];
+    $info=$row['id'];
+    return $info;
+    $conn->close();
+}
 ?>

@@ -12,10 +12,12 @@ if(isUser($email)) {
     if(password_verify($pass,$password_hash)) {
         session_start();
         $id=getIdUser($email);
-
+        $date=getDateUser($email);
         $info=getUserInfo($email);
         $_SESSION['auth']=true;
         $_SESSION['user_info']=$info;
+        $_SESSION['id']=$id;
+        $_SESSION['date']=$date;
         $mas=explode(',',$info);
         /*setcookie("userID",$id);
         setcookie("dateOfReg",$mas[3]);
@@ -25,12 +27,12 @@ if(isUser($email)) {
         exit;
     }else{
         header("Location:http://my_host1.com/index.php?txt=Wrong password or email!&col=red");
-        $_SESSION['count'] = 0;
+
         die();
     }
 }else {
     header("Location:http://my_host1.com/index.php?txt=Wrong password or email!&col=red");
-    $_SESSION['count'] = 0;
+
     die();
 }
 
