@@ -32,38 +32,38 @@ if($str){
         <form  method="POST" action="back_files/updating_info.php">
             <div class="column">
 
-                <?php echo "<h2 class='hname' style='color:$col;font-weight: lighter'>Change your information</h2>" ?>
-                <div><label>First name</label><br></br></div>
+                <?php echo "<h2 class='hname' style='color:white;font-weight: bold'>Change your information</h2>" ?>
+                <div><label class='profilelabel'>First name</label></div>
                 <div>
-                    <?php echo "<input style='width: 86%' name='newFirstName' type='text'  required  value='$info[0]'><br></br>"?>
+                    <?php echo "<input style='width: 70%;height: 8px' name='newFirstName' type='text'  required  value='$info[0]'>"?>
                 </div>
-                <div><label>Last name</label><br></br></div>
+                <div><label class='profilelabel'>Last name</label></div>
                 <div>
-                    <?php echo "<input style='width: 86%' name='newLastName' type='text'  required value='$info[1]' ><br></br>"?>
-                </div>
-                <div>
-                    <label>Email</label><br></br>
+                    <?php echo "<input style='width: 70%;height: 8px' name='newLastName' type='text'  required value='$info[1]' >"?>
                 </div>
                 <div>
-                    <?php echo "<input name='newEmail' type='email' required value='$info[2]' ><br></br>"?>
+                    <label class='profilelabel'>Email</label>
                 </div>
                 <div>
-                    <label>Current password</label><br></br>
+                    <?php echo "<input style='height: 8px;width: 70%' name='newEmail' type='email' required value='$info[2]' >"?>
                 </div>
                 <div>
-                    <?php echo "<input name='CurrentPass' type='password' placeholder='Set A Current password*'  required  ><br></br>"?>
+                    <label class='profilelabel' style='height: 8px;width: 70%' >Current password</label>
                 </div>
                 <div>
-                    <label>New password</label><br></br>
+                    <?php echo "<input style='height: 8px;width: 70%' name='CurrentPass' type='password' placeholder='Set A Current password*'  required  >"?>
                 </div>
                 <div>
-                    <?php echo "<input name='NewPass' type='password' placeholder='Set A New password*' required  ><br></br>"?>
+                    <label  class='profilelabel' style='height: 8px;width: 70%';>New password</label>
+                </div>
+                <div>
+                    <?php echo "<input style='height: 8px;width: 70%' name='NewPass' type='password' placeholder='Set A New password*' required  ><br></br>"?>
                 </div>
 
             </div>
 
             <div>
-                <input type="submit" value="UPDATE INFO" class="submit" name="Update" >
+                <input style='width: 78%' type="submit" value="UPDATE INFO" class="submit" name="Update" >
             </div>
         </form>
     </div>
