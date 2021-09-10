@@ -1,54 +1,36 @@
 <?php
-include '../db/database_info.php';
-include '../db/lib.php';
+include '../classes/User.php';
+include '../classes/DBC.php';
 session_start();
-function GetDataUser($key){
-    $arr=[
-        firstname=>htmlspecialchars($_POST['newFirstName']),
-        lastname=>htmlspecialchars($_POST['newLastName']),
-        email=>htmlspecialchars($_POST['newEmail']),
-        currpass=>$_POST['CurrentPass'],
-        newpass=>$_POST['NewPass'],
-        hash=>password_hash($_POST['NewPass'],PASSWORD_DEFAULT)
-    ];
-    return $arr[$key];
-}
-$firstname=GetDataUser(firstname);
-$lastname = GetDataUser(lastname);
-$email = GetDataUser(email);
-$currpass =GetDataUser(currpass);
-if(GetDataUser(newpass)){
-    $newpass =GetDataUser(hash);
+$DB= new DBC();
+$currentUser=new User(
+    htmlspecialchars($_COOKIE['fname']),
+    htmlspecialchars($_COOKIE['lname']),
+    htmlspecialchars($_COOKIE['email']),
+    $_POST['CurrentPass']);
+
+$newData=[
+    fname=>htmlspecialchars($_POST['newFirstName']),
+    lname=>htmlspecialchars($_POST['newLastName']),
+    email=>htmlspecialchars($_POST['newEmail']),
+    pass=>$_POST['NewPass']
+];
+
+$valid=$DB->validateUser($currentUser);
+if($valid){
+    $result=$DB->updateUser($currentUser,$newData);
+
+    setcookie('email',$newData['email']);
+    setcookie('fname',$newData['fname']);
+    setcookie('lname',$newData['lname']);
+
+    $info = $newData['fname'].','.$newData['lname'].','.$newData['email'].','.$_COOKIE['date'];
+    header("Location:http://my_host1.com/my_profile.php?txt=$info");
 }else{
-    $newpass=null;
+    $info = $newData['fname'].','.$newData['lname'].','.$newData['email'].','.$_COOKIE['date'];
+    header("Location:http://my_host1.com/update_info.php?head=Wrong current password!&txt=$info");
+    exit;
 }
 
 
-$id = $_SESSION['id'];
-$bool=isFreeEmail($email,$id);
-if($bool) {
-    $password_hash = getUserHashId($id);
-    if (password_verify($currpass, $password_hash)) {
-        if($newpass) {
-            session_start();
-            updateUserInfo($firstname, $lastname, $email, $newpass, $id);
-            $info = $firstname . ',' . $lastname . ',' . $email . ',' . $_SESSION['date'];
-            header("Location:http://my_host1.com/my_profile.php?txt=$info");
-            //("Location:http://my_host1.com/info_page.php?txt=$FullName&count=$count&names=$names&times=$time");
-            exit;
-        }else{
-            session_start();
-            $dop=password_hash($currpass,PASSWORD_DEFAULT);
-            updateUserInfo($firstname, $lastname, $email, $dop, $id);
-            $info = $firstname . ',' . $lastname . ',' . $email . ',' . $_SESSION['date'];
-            header("Location:http://my_host1.com/my_profile.php?txt=$info");
-            //("Location:http://my_host1.com/info_page.php?txt=$FullName&count=$count&names=$names&times=$time");
-            exit;
-        }
-    }else{
-        session_start();
-        $info = $firstname . ',' . $lastname . ',' . $email . ',' . $_SESSION['date'];
-        header("Location:http://my_host1.com/update_info.php?head=Wrong current password!&txt=$info");
-        exit;
-    }
-}
+?>

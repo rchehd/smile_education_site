@@ -1,0 +1,4 @@
+SERVERNAME = "localhost";
+USERNAME = "myuser";
+PASSWORD = "1235812358";
+DBNAME="my_host1";
