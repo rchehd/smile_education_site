@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 /*$_COOKIE['user']=null;
 $_COOKIE['dateOfReg']=null;

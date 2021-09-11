@@ -1,7 +1,5 @@
 <?php
-
 session_start();
-
 if($_SESSION["auth"]!=true){
     header("Location:http://my_host1.com/index.php");
     exit;
@@ -62,25 +60,7 @@ $FullName=$info[0].' '.$info[1];
             </div>
     </div>
 </div>
-<!--<table class="blueTable" >
-    <thead >
-    <tr class="head_table">
-        <td>Character</td>
-        <td>Values</td>
-    </tr>
-    </thead>
-    //<?php
-     /*   echo "<tbody ><tr><td>Fisrt Name</td><td >$info[0]</td></tr></tbody>";
-        echo "<tbody ><tr><td>Last Name</td><td>$info[1]</td></tr></tbody>";
-        echo "<tbody ><tr><td>Email Adress</td><td>$info[2]</td></tr></tbody>";
-        echo "<tbody ><tr><td>Date of registration</td><td>$info[3]</td></tr></tbody>";*/
-    ?>
-</table><br>
 
-<div style="margin-left: 1%">
-    <?php //echo "<a href='http://my_host1.com/update_info.php?txt=$str'>Change my information</a><br></br>" ?>
-</div>
-<div style="margin-left: 1%">
     <a style="background-color: firebrick" href='http://my_host1.com/back_files/log_off.php'>Exit</a>
 </div>-->
 

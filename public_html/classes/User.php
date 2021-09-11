@@ -9,8 +9,6 @@ class User{
      private $dateOfReg;
 
 
-
-
      public function __construct($fname,$lname,$email,$password){
          $this->firstName=$fname;
          $this->lastName=$lname;
@@ -34,36 +32,37 @@ class User{
         $this->id = $id;
     }
 
-     public function setUserFName($fname){
+    public function setUserFName($fname){
          $this->firstName=$fname;
-     }
+    }
 
-     public function getUserFName(){
+    public function getUserFName(){
           return  $this->firstName;
-     }
+    }
 
-     public function setUserLName($lname){
+    public function setUserLName($lname){
          $this->lastName=$lname;
-     }
+    }
 
-     public function getUserLName(){
+    public function getUserLName(){
          return  $this->lastName;
-     }
+    }
 
-     public function setUserEmail($email){
+    public function setUserEmail($email){
          $this->email=$email;
-     }
+    }
 
-     public function getUserEmail(){
+    public function getUserEmail(){
          return  $this->email;
-     }
+    }
 
-     public function setUserPass($password){
+    public function setUserPass($password){
          $this->password=password_hash($password,PASSWORD_DEFAULT);
-     }
-     public function getUserPass(){
+    }
+
+    public function getUserPass(){
          return  $this->password;
-     }
+    }
 
 
 

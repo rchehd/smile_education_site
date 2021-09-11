@@ -124,29 +124,7 @@ class DBC
         return $result[0]['id'];
 
     }
-    private function getUserInfoFromEmail(string $userEmail, string $paramName){
-        $sql = 'SELECT :param FROM users WHERE Email= :email';
-        $stm=$this->dbconn->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-        $stm->execute(array(':param'=>$paramName,':email'=>$userEmail));
-        $result=$stm->fetchALL(PDO::FETCH_ASSOC);
-        return $result[0][$paramName];
 
-    }
-    private function getUserInfoFromId(int $id,string $paramName ){
-        $sql = 'SELECT :param FROM users WHERE id= :id';
-        $stm=$this->dbconn->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-        $stm->execute(array(':param'=>$paramName,':id'=>$id));
-        $result=$stm->fetchALL();
-        return $result[0][$paramName];
-
-    }
-    private function getAllUserInfoFromId(int $id){
-        $sql = 'SELECT * FROM users WHERE id= :id';
-        $stm=$this->dbconn->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-        $stm->execute(array(':id'=>$id));
-        $result=$stm->fetchALL();
-        return $result[0];
-    }
     private function isUser(int $id,string $email){
         $sql = 'SELECT id FROM users WHERE Email= :email and id!= :id';
         $stm = $this->dbconn->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));

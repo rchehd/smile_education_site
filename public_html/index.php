@@ -1,14 +1,11 @@
 <!--get values of $_GET array-->
 <?php
-
 session_start();
-
 if($_SESSION["auth"]==true){
     $info=$_SESSION['user_info'];
     header("Location:http://my_host1.com/my_profile.php?txt=$info");
     exit;
 }
-
 
 $txt='Sign In for Free';
 $col='white';
@@ -23,6 +20,7 @@ if(!empty($_GET['log'])){
 }
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

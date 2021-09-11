@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 $h='Change your information';
 $c='white';
